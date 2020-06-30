@@ -342,6 +342,8 @@ class unfold():
                 return ii + 1
         # the for-else
         else:
+            with open('tempEPB.txt', 'a') as outfile:
+                outfile.write(f'Searching for {K0}')
             raise ValueError(
                     'Cannot find the corresponding K-points in WAVECAR!' 
                     )
