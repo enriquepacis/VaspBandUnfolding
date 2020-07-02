@@ -154,6 +154,7 @@ def EBS_scatter(kpts, cell, spectral_weight,
 
             if kpath_label:
                 ax.set_xticks(np.r_[kdist[::nseg], kdist[-1]])
+                ''' --- Commented out by EPB ---
                 kname = [x.upper() for x in kpath_label]
                 for ii in range(len(kname)):
                     if kname[ii] == 'G':
@@ -161,10 +162,13 @@ def EBS_scatter(kpts, cell, spectral_weight,
                     else:
                         kname[ii] = r'$\mathrm{\mathsf{%s}}$' % kname[ii]
                 ax.set_xticklabels(kname)
+                '''
+                ax.set_xticklabels(kpath_label) # added by EPB
 
     plt.tight_layout(pad=0.2)
     plt.savefig(save, dpi=360)
     if show: plt.show()
+
 
 def EBS_cmaps(kpts, cell, E0, spectral_function,
               eref=0.0, nseg=None,
@@ -225,6 +229,7 @@ def EBS_cmaps(kpts, cell, E0, spectral_function,
 
             if kpath_label:
                 ax.set_xticks(np.r_[kdist[::nseg], kdist[-1]])
+                ''' Commented out by EPB
                 kname = [x.upper() for x in kpath_label]
                 for ii in range(len(kname)):
                     if kname[ii] == 'G':
@@ -232,6 +237,8 @@ def EBS_cmaps(kpts, cell, E0, spectral_function,
                     else:
                         kname[ii] = r'$\mathrm{\mathsf{%s}}$' % kname[ii]
                 ax.set_xticklabels(kname)
+                '''
+                ax.set_xticklabels(kpath_label) # added by EPB
 
     plt.tight_layout(pad=0.2)
     plt.savefig(save, dpi=360)
@@ -399,7 +406,8 @@ class unfold():
                 # pad the coefficients to 3D grid
                 band_coeff = self.wfc.readBandCoeff(ispin=whichspin, ikpt=ikpt,
                                                     iband=nb + 1, norm=False)
-                nplw = band_coeff.shape[0] / 2
+                nplw = int(band_coeff.shape[0] / 2) # make this an int - EPB
+
                 band_spinor_coeff = [band_coeff[:nplw], band_coeff[nplw:]]
 
                 for Ispinor in range(2):

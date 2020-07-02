@@ -1,5 +1,7 @@
 # PyVaspwfc
 
+This is my customization of Qijing Zhang's VaspBandUnfolding repository.
+
 This is a python class for dealing with `VASP` pseudo-wavefunction file `WAVECAR`.
 It can be used to extract the planewave coefficients of any single Kohn-Sham (KS)
 orbital from the file.  In addition, by padding the planewave coefficients to a
